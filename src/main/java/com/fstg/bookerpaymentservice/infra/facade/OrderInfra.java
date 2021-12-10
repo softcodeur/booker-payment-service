@@ -5,7 +5,6 @@ import com.fstg.bookerpaymentservice.infra.core.AbstractInfra;
 
 public interface OrderInfra extends AbstractInfra {
     Order findByReference(String reference);
-    int save(Order order);
     int update(Order order);
    
 }

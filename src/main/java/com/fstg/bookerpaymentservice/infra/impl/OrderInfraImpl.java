@@ -20,12 +20,6 @@ public class OrderInfraImpl extends AbstractInfraImpl implements OrderInfra {
 
 
     @Override
-    public int save(Order order) {
-       
-        return orderProxy.save(order);
-    }
-
-    @Override
     public int update(Order oder) {
        
         return orderProxy.update(oder);

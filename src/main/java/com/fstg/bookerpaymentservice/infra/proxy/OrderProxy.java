@@ -15,9 +15,6 @@ public interface OrderProxy {
 	public Order findByReference( @PathVariable String reference);
 
     @PostMapping("order-api/")
-	public int save(@RequestBody Order order);
-
-    @PostMapping("order-api/")
 	public int update(@RequestBody Order oder) ;
 	   
 }
