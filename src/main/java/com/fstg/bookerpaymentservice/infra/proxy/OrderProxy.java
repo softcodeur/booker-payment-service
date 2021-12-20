@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fstg.bookerpaymentservice.domain.pojo.Order;
 
-@FeignClient(name = "booker-order-service", url="localhost:8085")
+@FeignClient(name = "ORDER-SERVICE")
 public interface OrderProxy {
 	
-	@GetMapping("order-api/ref/{ref}")
+	@GetMapping("/api/v1/customerOrder/ref/{ref}")
 	public Order findByReference( @PathVariable String reference);
 
-    @PostMapping("order-api/")
+    @PostMapping("/api/v1/customerOrder/")
 	public int update(@RequestBody Order oder) ;
 	   
 }

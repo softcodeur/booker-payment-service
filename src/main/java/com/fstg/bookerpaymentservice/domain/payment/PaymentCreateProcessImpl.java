@@ -1,5 +1,7 @@
 package com.fstg.bookerpaymentservice.domain.payment;
 
+import org.springframework.stereotype.Service;
+
 import com.fstg.bookerpaymentservice.domain.core.AbstractProcessImpl;
 import com.fstg.bookerpaymentservice.domain.core.Result;
 import com.fstg.bookerpaymentservice.domain.pojo.Order;
@@ -7,6 +9,7 @@ import com.fstg.bookerpaymentservice.domain.pojo.Payment;
 import com.fstg.bookerpaymentservice.infra.facade.OrderInfra;
 import com.fstg.bookerpaymentservice.infra.facade.PaymentInfra;
 
+@Service
 public class PaymentCreateProcessImpl extends AbstractProcessImpl<PaymentCreateProcessInput> implements PaymentCreateProcess {
 
 

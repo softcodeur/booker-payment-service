@@ -12,6 +12,7 @@ public class OrderPaymentProcessImpl extends AbstractProcessImpl<OrderPaymentInp
 
     public void validate(OrderPaymentInput orderPaymentInput, Result result) {
         String reference = orderPaymentInput.getReference();
+        System.out.println("*******************REF : "+reference);
         double amount = orderPaymentInput.getAmount();
       Order order = orderInfra.findByReference(reference);
         if (order == null || order.getId() == null) {
