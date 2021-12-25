@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @ToString
 public class Order {
     private Long id;
-    private String reference;
+    private String ref;
     private BigDecimal orderAmount;
     private BigDecimal totalPaid;
 }

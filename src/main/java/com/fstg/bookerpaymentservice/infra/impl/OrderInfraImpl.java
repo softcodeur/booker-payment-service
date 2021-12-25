@@ -13,15 +13,14 @@ public class OrderInfraImpl extends AbstractInfraImpl implements OrderInfra {
 
     @Override
     public Order findByReference(String reference) {
-        System.out.println("****************** REFE : " + reference);
         return orderProxy.findByReference(reference);
     }
 
 
     @Override
-    public int update(Order oder) {
+    public void update(Order oder) {
 
-        return orderProxy.update(oder);
+        orderProxy.update(oder);
     }
 
 

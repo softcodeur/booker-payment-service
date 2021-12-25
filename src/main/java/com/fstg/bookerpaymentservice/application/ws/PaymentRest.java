@@ -17,9 +17,7 @@ public class PaymentRest {
 
     @PostMapping("/")
     public Result save(@RequestBody PaymentDto paymentDto) {
-        System.out.println("PaymentRest.save()");
         PaymentCreateProcessInput paymentCreateProcessInput = PaymentDto.to(paymentDto);
-        System.out.println("PaymentRest.save() mapper" + paymentCreateProcessInput.toString());
         return paymentCreateProcess.execute(paymentCreateProcessInput);
     }
 
