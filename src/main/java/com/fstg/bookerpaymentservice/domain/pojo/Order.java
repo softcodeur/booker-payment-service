@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,7 +14,6 @@ import lombok.ToString;
 public class Order {
     private Long id;
     private String reference;
-    private double total;
-    private double totalPaye;
-    
+    private BigDecimal orderAmount;
+    private BigDecimal totalPaid;
 }

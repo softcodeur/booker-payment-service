@@ -8,13 +8,13 @@ import com.fstg.bookerpaymentservice.domain.core.AbstractProcessInput;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class OrderPaymentInput extends AbstractProcessInput {
     String reference;
-    double amount;
-
-   
+    BigDecimal amount;
 }

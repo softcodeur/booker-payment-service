@@ -5,31 +5,33 @@ import com.fstg.bookerpaymentservice.domain.core.Result;
 import com.fstg.bookerpaymentservice.domain.pojo.Order;
 import com.fstg.bookerpaymentservice.infra.facade.OrderInfra;
 
-public class OrderPaymentProcessImpl extends AbstractProcessImpl<OrderPaymentInput> implements OrderPaymentProcess {
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-    private OrderInfra orderInfra;
+public class OrderPaymentProcessImpl extends AbstractProcessImpl<OrderPaymentInput> implements OrderPaymentProcess {
+    Logger logger = Logger.getLogger(OrderPaymentProcessImpl.class.getName());
+
+    private final OrderInfra orderInfra;
 
 
     public void validate(OrderPaymentInput orderPaymentInput, Result result) {
         String reference = orderPaymentInput.getReference();
-        System.out.println("*******************REF : "+reference);
-        double amount = orderPaymentInput.getAmount();
-      Order order = orderInfra.findByReference(reference);
+        logger.info("fetching order by reference started");
+        Order order = orderInfra.findByReference(reference);
+        logger.info("fetching order by reference started");
         if (order == null || order.getId() == null) {
             result.addErrorMessage(orderInfra.getMessage("order.payment.not_founded"));
-        } else if (order.getTotalPaye() + amount > order.getTotal()) {
-           result.addErrorMessage(orderInfra.getMessage("order.payment.prob_payment"));
+        } else if (order.getTotalPaid().add(orderPaymentInput.getAmount()).compareTo(order.getOrderAmount()) > 0) {
+            result.addErrorMessage(orderInfra.getMessage("order.payment.prob_payment"));
         }
     }
 
-
     public void run(OrderPaymentInput orderPaymentInput, Result result) {
         String reference = orderPaymentInput.getReference();
-        double montant = orderPaymentInput.getAmount();
         Order order = orderInfra.findByReference(reference);
-        double nvTotalPaye = order.getTotalPaye() + montant;
-        order.setTotalPaye(nvTotalPaye);
+        order.setTotalPaid(order.getTotalPaid().add(orderPaymentInput.getAmount()));
         orderInfra.update(order);
+        logger.log(Level.INFO, "updated order {}", order);
         result.addInfoMessage(orderInfra.getMessage("order.payment.created"));
     }
 
