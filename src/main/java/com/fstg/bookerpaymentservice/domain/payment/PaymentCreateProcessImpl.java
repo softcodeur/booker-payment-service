@@ -20,8 +20,10 @@ public class PaymentCreateProcessImpl extends AbstractProcessImpl<PaymentCreateP
         logger.info("Payment create process validate");
         order = orderInfra.findByReference(abstractProcessInput.getOrderReference());
         Payment payment = paymentInfra.findByReference(abstractProcessInput.getPayment().getReference());
+        System.out.println("payment valdiate : " + payment.toString());
+        System.out.println("order valdiate : " + order.toString());
         if (order == null) {
-            result.addErrorMessage("p   ayment.create.order_not_founded");
+            result.addErrorMessage("payment.create.order_not_founded");
         } else if (order.getTotalPaid().add(abstractProcessInput.getPayment().getAmount()).compareTo(order.getTotalPaid()) < 0) {
             result.addErrorMessage("payment.create.amount_invalid");
         }
